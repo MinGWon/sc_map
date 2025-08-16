@@ -1,0 +1,1111 @@
+/* 메인페이지 스타일 */
+.mainPage {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.headerLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 2000;
+  border-radius: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.headerLeft h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.headerRight {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 0.5rem 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 2000;
+  border-radius: 0 0 0 8px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.userInfo span {
+  font-size: 14px;
+  color: #333;
+}
+
+.logoutButton {
+  padding: 0.5rem 1rem;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: background-color 0.2s;
+}
+
+.logoutButton:hover {
+  background-color: #cc3333;
+}
+
+.mapContainer {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  z-index: 1;
+  touch-action: none;
+  user-select: none;
+}
+
+#kakao-map {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  background: #f0f0f0;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.mapLoading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  color: #666;
+  font-size: 18px;
+  z-index: 1000;
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.spacePanel {
+  position: absolute;
+  top: 70px;
+  left: 20px;
+  width: 350px;
+  max-height: calc(100vh - 100px);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1500;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dbdbdb;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.panelHeader {
+  background: white;
+  padding: 5px 16px;
+  border-bottom: 1px solid #efefef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panelHeader h3 {
+  margin: 0;
+  color: #262626;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #8e8e8e;
+  cursor: pointer;
+  padding: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.1s ease;
+  border-radius: 50%;
+}
+
+.closeButton:hover {
+  color: #262626;
+  background: #f5f5f5;
+}
+
+.panelContent {
+  overflow: hidden;
+  flex: 1;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* Instagram-style post header */
+.postHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #efefef;
+  flex-shrink: 0;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profileImage {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.profileAvatar {
+  font-size: 16px;
+  color: white;
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 600;
+  color: #262626;
+  line-height: 18px;
+}
+
+.location {
+  font-size: 12px;
+  color: #8e8e8e;
+  line-height: 16px;
+}
+
+.moreButton {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #262626;
+  cursor: pointer;
+  padding: 8px;
+  font-weight: bold;
+}
+
+/* Instagram-style post image */
+.postImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #f8f9fa;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.postImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imagePlaceholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  color: #8e8e8e;
+}
+
+.placeholderIcon {
+  font-size: 48px;
+  margin-bottom: 8px;
+  opacity: 0.5;
+}
+
+.placeholderText {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Instagram-style action buttons */
+.postActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px 0;
+  flex-shrink: 0;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 20px;
+  color: #262626;
+  transition: transform 0.1s ease;
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+}
+
+.actionButton:active {
+  transform: scale(0.95);
+}
+
+.bookmarkButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 20px;
+  color: #262626;
+  transition: transform 0.1s ease;
+}
+
+.bookmarkButton:hover {
+  transform: scale(1.1);
+}
+
+.heartIcon, .commentIcon, .shareIcon, .bookmarkIcon {
+  display: block;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.heartIcon.heartLiked {
+  color: #ed4956;
+  transform: scale(1.1);
+  animation: heartBeat 0.4s ease-in-out;
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.actionButton:hover .heartIcon {
+  transform: scale(1.1);
+}
+
+.actionButton:hover .heartIcon.heartLiked {
+  transform: scale(1.2);
+}
+
+/* Instagram-style likes section */
+.likesSection {
+  padding: 0 16px 8px;
+  flex-shrink: 0;
+}
+
+.likesCount {
+  font-size: 14px;
+  font-weight: 600;
+  color: #262626;
+  line-height: 18px;
+}
+
+/* Instagram-style post content */
+.postContent {
+  padding: 0 16px 8px;
+  flex-shrink: 0;
+}
+
+.postCaption {
+  margin-bottom: 4px;
+}
+
+.postUsername {
+  font-size: 14px;
+  font-weight: 600;
+  color: #262626;
+  margin-right: 8px;
+}
+
+.postText {
+  font-size: 14px;
+  color: #262626;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.postMeta {
+  margin-top: 8px;
+}
+
+.postTime {
+  font-size: 12px;
+  color: #8e8e8e;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+/* Instagram-style comments section */
+.commentsSection {
+  border-top: 1px solid #efefef;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.commentsList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 9px 16px 0;
+  min-height: 0;
+  max-height: 120px;
+}
+
+/* Instagram-style scrollbar */
+.commentsList::-webkit-scrollbar {
+  width: 4px;
+}
+
+.commentsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.commentsList::-webkit-scrollbar-thumb {
+  background: #dbdbdb;
+  border-radius: 2px;
+}
+
+.commentsList::-webkit-scrollbar-thumb:hover {
+  background: #c7c7c7;
+}
+
+/* Firefox scrollbar */
+.commentsList {
+  scrollbar-width: thin;
+  scrollbar-color: #dbdbdb transparent;
+}
+
+.comment {
+  margin-bottom: 12px;
+}
+
+.commentContent {
+  margin-bottom: 4px;
+}
+
+.commentUsername {
+  font-size: 14px;
+  font-weight: 600;
+  color: #262626;
+  margin-right: 8px;
+}
+
+.commentText {
+  font-size: 14px;
+  color: #262626;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+.commentMeta {
+  display: flex;
+  gap: 20px;
+  height: 13px;
+  align-items: center;
+}
+
+.commentTime {
+  font-size: 12px;
+  color: #8e8e8e;
+  font-weight: 400;
+}
+
+.commentLike, .commentReply {
+  background: none;
+  border: none;
+  font-size: 12px;
+  color: #8e8e8e;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.commentLike:hover, .commentReply:hover {
+  color: #262626;
+}
+
+.commentLikeActive {
+  color: #ed4956 !important;
+}
+
+.commentLikeActive:hover {
+  color: #c13584 !important;
+}
+
+/* Instagram-style comment form */
+.commentForm {
+  border-top: 1px solid #efefef;
+  padding: 2px 16px;
+  background: white;
+  flex-shrink: 0;
+}
+
+.commentInputContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 4px;
+}
+
+.commentInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  resize: none;
+  background: transparent;
+  color: #262626;
+  line-height: 18px;
+  min-height: 18px;
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.commentInput::placeholder {
+  color: #8e8e8e;
+  font-weight: 400;
+}
+
+.submitButton {
+  background: none;
+  border: none;
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  flex-shrink: 0;
+}
+
+.submitButton:hover {
+  color: #00376b;
+}
+
+.submitButton:disabled {
+  color: #0095f6;
+  opacity: 0.3;
+  cursor: default;
+}
+
+.customMarker {
+  position: absolute !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  transform-origin: center bottom !important;
+  pointer-events: auto;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.markerIcon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin: 0 auto 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.markerDot {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.markerPulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  background: rgba(102, 126, 234, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse 2s infinite;
+  z-index: 1;
+}
+
+.markerLabel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  min-width: fit-content;
+}
+
+.markerLabel::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.2));
+}
+
+/* Ensure default pointer is hidden when flipped is used */
+.markerLabelFlipped::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Flipped pointer (label above marker) -> triangle should be below and point downward */
+.markerLabelFlipped::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(255, 255, 255, 0.95);
+  filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.2));
+}
+
+/* Active state color for flipped pointer */
+.activeMarker .markerLabelFlipped::after {
+  border-top-color: #e53e3e !important;
+}
+
+.customMarker:hover .markerDot,
+.markerHover .markerDot {
+  transform: scale(1.2);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+  box-shadow: 0 6px 20px rgba(90, 103, 216, 0.6);
+}
+
+.customMarker:hover .markerLabel,
+.markerHover .markerLabel {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.customMarker:hover .markerPulse,
+.markerHover .markerPulse {
+  animation: pulseHover 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1.3);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes pulseHover {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Active marker state */
+.customMarker.active .markerDot {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  box-shadow: 0 6px 20px rgba(72, 187, 120, 0.6);
+  animation: activeMarker 0.6s ease-out;
+}
+
+.customMarker.active .markerLabel {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  color: white;
+  border-color: transparent;
+}
+
+@keyframes activeMarker {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+/* Active marker state - Red color for selected space */
+.activeMarker .markerDot {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%) !important;
+  box-shadow: 0 6px 20px rgba(229, 62, 62, 0.6) !important;
+  animation: activeMarker 0.6s ease-out;
+  transform: scale(1.2);
+}
+
+.activeMarker .markerLabel {
+  background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%) !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+.activeMarker .markerLabel::before {
+  border-bottom-color: #e53e3e !important;
+}
+
+.activeMarker .markerPulse {
+  background: rgba(229, 62, 62, 0.4) !important;
+  animation: activePulse 1.5s infinite;
+}
+
+@keyframes activePulse {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Override hover effects for active marker */
+.activeMarker:hover .markerDot,
+.activeMarker.markerHover .markerDot {
+  background: linear-gradient(135deg, #c53030 0%, #9c2626 100%) !important;
+  box-shadow: 0 8px 24px rgba(197, 48, 48, 0.8) !important;
+}
+
+.mapLevelControl {
+  position: absolute;
+  top: 12px;
+  left: 220px;
+  z-index: 1000;
+}
+
+.mapControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.sliderLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #666;
+  margin: 0;
+}
+
+.sliderContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.levelLabel {
+  font-size: 10px;
+  color: #888;
+  min-width: 20px;
+  text-align: center;
+}
+
+.levelSlider {
+  width: 100px;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.levelSlider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.levelSlider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+}
+
+.levelSlider::-webkit-slider-thumb:active {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.8);
+}
+
+.levelSlider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+  transition: all 0.2s ease;
+}
+
+.levelSlider::-moz-range-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.6);
+}
+
+.levelSlider::-moz-range-thumb:active {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.8);
+}
+
+.levelSlider:focus {
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.levelSlider:active {
+  background: #cbd5e0;
+}
+
+/* 슬라이더 트랙 스타일 개선 */
+.levelSlider::-webkit-slider-track {
+  background: #e2e8f0;
+  border-radius: 2px;
+  height: 4px;
+}
+
+.levelSlider::-moz-range-track {
+  background: #e2e8f0;
+  border-radius: 2px;
+  height: 4px;
+  border: none;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .headerLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .mapLevelControl {
+    top: 70px;
+    left: 10px;
+  }
+  
+  .mapControls {
+    width: 100%;
+    justify-content: space-between;
+    padding: 6px 12px;
+    gap: 8px;
+  }
+  
+  .levelSlider {
+    width: 80px;
+  }
+}
+
+/* 답글 관련 스타일 */
+.repliesSection {
+  margin-left: 20px;
+  margin-top: 8px;
+  padding-left: 12px;
+  border-left: 1px solid #efefef;
+}
+
+.reply {
+  margin-bottom: 10px;
+}
+
+.replyContent {
+  margin-bottom: 2px;
+}
+
+.replyUsername {
+  font-size: 13px;
+  font-weight: 600;
+  color: #262626;
+  margin-right: 6px;
+}
+
+.replyText {
+  font-size: 13px;
+  color: #262626;
+  line-height: 17px;
+  font-weight: 400;
+}
+
+.replyMeta {
+  display: flex;
+  gap: 16px;
+  height: 12px;
+  align-items: center;
+}
+
+.replyTime {
+  font-size: 11px;
+  color: #8e8e8e;
+  font-weight: 400;
+}
+
+.replyForm {
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+.replyInputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.replyInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  resize: none;
+  background: transparent;
+  color: #262626;
+  line-height: 18px;
+  min-height: 18px;
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 6px;
+}
+
+.replyInput::placeholder {
+  color: #8e8e8e;
+  font-weight: 400;
+}
+
+.replyActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.submitReplyButton, .cancelReplyButton {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.submitReplyButton {
+  color: #0095f6;
+}
+
+.submitReplyButton:hover {
+  color: #00376b;
+}
+
+.submitReplyButton:disabled {
+  color: #0095f6;
+  opacity: 0.3;
+  cursor: default;
+}
+
+.cancelReplyButton {
+  color: #8e8e8e;
+}
+
+.cancelReplyButton:hover {
+  color: #262626;
+}
+
+.replyLike {
+  background: none;
+  border: none;
+  font-size: 11px;
+  color: #8e8e8e;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 12px;
+}
+
+.replyLike:hover {
+  color: #262626;
+}
+
+.replyLikeActive {
+  color: #ed4956 !important;
+}
+
+.replyLikeActive:hover {
+  color: #c13584 !important;
+}
+
+/* Instagram-style comment icon */
+.commentSvg {
+  display: block;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.2s ease;
+}
+
+.commentActive {
+  fill: #262626;
+}
+
+.actionButton:hover .commentSvg {
+  transform: scale(1.1);
+}
+

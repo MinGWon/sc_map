@@ -3,25 +3,32 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  /* 모바일에서 확대/축소 방지 */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  /* 부드러운 스크롤 */
+  scroll-behavior: smooth;
+  /* 모바일 터치 최적화 */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* 기본 폰트 크기를 뷰포트에 맞게 조정 */
+  font-size: clamp(14px, 2.5vw, 16px);
+  line-height: 1.5;
 }
 
 * {
@@ -30,13 +37,81 @@ body {
   margin: 0;
 }
 
+/* 터치 디바이스에서 탭 하이라이트 제거 */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* 이미지 반응형 */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 버튼 터치 영역 최적화 */
+button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 스크롤바 스타일링 (웹킷 기반 브라우저) */
+::-webkit-scrollbar {
+  width: clamp(4px, 1vw, 8px);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+  
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* 접근성 개선 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor !important;
   }
 }

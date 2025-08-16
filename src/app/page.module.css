@@ -1,167 +1,752 @@
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-}
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 20px;
+}
+
+.loginContainer {
+  background: white;
+  border: 1px solid #dbdbdb;
+  border-radius: 12px;
+  padding: 40px;
+  width: 450px;
+  max-width: 450px; /* Increase container width from 350px to 550px */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.logoSection {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #405de6, #833ab4, #e1306c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.input {
+  width: 268px;
+  min-width: 268px; /* Increase minimum width */
+  padding: 14px 12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #262626;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  border-color: #0095f6;
+  background-color: white;
+  box-shadow: 0 0 0 2px rgba(0, 149, 246, 0.2);
+}
+
+.input::placeholder {
+  color: #8e8e8e;
+  font-size: 14px;
+}
+
+.inputGroup {
+  width: 100%;
+  min-width: 100%; /* Update from fixed 350px to 100% to be responsive */
+}
+
+.loginButton {
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 12px 12px 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.loginButton.active {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(64, 93, 230, 0.3);
+}
+
+.loginButton:hover.active {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(64, 93, 230, 0.4);
+}
+
+.loginButton:disabled {
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.errorMessage {
+  color: #ed4956;
+  font-size: 14px; /* 기존 12px에서 증가 */
+  font-weight: 500; /* 글씨 두께 추가 */
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.4;
+  padding: 10px; /* 패딩 증가 */
+  background: #ffeaea;
+  border-radius: 6px;
+  border: 1px solid #ffcdd2;
+}
+
+.errorMessage svg {
+  width: 14px; /* 아이콘 크기도 증가 */
+  height: 14px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background-color: #dbdbdb;
+}
+
+.dividerText {
+  color: #8e8e8e;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 18px;
+  text-transform: uppercase;
+}
+
+.forgotPassword {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.forgotLink {
+  color: #0095f6;
+  font-size: 12px;
+  text-decoration: none;
   font-weight: 500;
 }
 
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+.forgotLink:hover {
+  text-decoration: underline;
 }
 
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 158px;
+.signupContainer {
+  background: white;
+  border: 1px solid #dbdbdb;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+  margin-top: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.footer {
-  grid-row-start: 3;
+.signupText {
+  color: #262626;
+  font-size: 14px;
+  margin: 0;
+}
+
+.signupLink {
+  color: #0095f6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signupLink:hover {
+  text-decoration: underline;
+}
+
+.demoInfo {
+  text-align: center;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 16px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  max-width: 350px;
+}
+
+.demoInfo p {
+  color: #262626;
+  font-size: 12px;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Progress Steps Styles */
+.progressSteps {
   display: flex;
-  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
-.footer a {
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #8e8e8e;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.progressStep.active {
+  color: #262626;
+}
+
+.stepNumber {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.progressStep.active .stepNumber {
+  background-color: #0095f6;
+  color: white;
+}
+
+.stepLabel {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.progressLine {
+  flex-grow: 1;
+  height: 2px;
+  background-color: #f0f0f0;
+  margin: 0 8px;
+  margin-bottom: 24px;
+}
+
+/* Step Styles */
+.stepTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #262626;
+}
+
+.inputRow {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.inputGroupSmall {
+  flex: 1;
+}
+
+.selectInput {
+  width: 100%;
+  padding: 14px 12px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #262626;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%238e8e8e'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.selectInput:focus {
+  border-color: #0095f6;
+  background-color: white;
+  box-shadow: 0 0 0 2px rgba(0, 149, 246, 0.2);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.secondaryButton, 
+.loginButton {
+  flex: 1;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.secondaryButton {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  color: #262626;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.secondaryButton:hover {
+  background: #e0e0e0;
+}
+
+.checkboxGroup {
+  margin: 12px 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #262626;
+  cursor: pointer;
+}
+
+.checkbox {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  accent-color: #0095f6;
+}
+
+.linkText {
+  color: #0095f6;
+  margin-left: 4px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.linkText:hover {
+  text-decoration: underline;
+}
+
+.successMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #4CAF50;
+  font-size: 14px;
+  padding: 8px;
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: 6px;
+  margin: 12px 0;
+}
+
+/* Student Info Styles */
+.studentInfoContainer {
+  margin: 0 0 1.25rem 0;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.formGroup label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.studentInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.studentInfoGrid .formGroup {
+  width: 100%;
+}
+
+.studentInfoGrid .input,
+.studentInfoGrid .select {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Student Card Styles */
+.studentCardPreview {
+  margin: 0 0 24px 0; /* Change margin to put space below the card */
+  padding: 16px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.studentCard {
+  width: 100%;
+  max-width: 420px; /* Set a max-width for the student card */
+  margin: 0 auto; /* Center the card */
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  border: 2px solid #2563eb;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: white;
+}
+
+.schoolHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.schoolLogo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.cardTitle {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardTitle h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.cardTitle span {
+  font-size: 10px;
+  opacity: 0.9;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-top: 4px;
+}
+
+.realCardType {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #eaeaea;
+}
+
+.greenDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #3aff99;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.6);
+}
+
+.timeDisplay {
+  font-family: monospace;
+  margin-top: 2px;
+  font-size: 12px;
+  color: #eaeaea;
+}
+
+.cardBody {
+  padding: 16px;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  height: 120px;
+}
+
+.photoSection {
+  flex-shrink: 0;
+}
+
+.photoPlaceholder {
+  width: 70px;
+  height: 82px;
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  border: 2px dashed #94a3b8;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.infoRow {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.footer img {
-  flex-shrink: 0;
+.label {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+  min-width: 42px;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+.value {
+  font-size: 12px;
+  color: #1e293b;
+  font-weight: 500;
 }
 
-@media (max-width: 600px) {
+.schoolMotto {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.principalSignature {
+  position: absolute;
+  bottom: 10px;
+  right: 45px;
+  font-size: 10px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sealPlaceholder {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1.5px dashed #ef4444;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: #dc2626;
+  font-weight: 500;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.cardFooter {
+  padding: 8px 12px;
+  background-color: #f8fafc;
+  font-size: 9px;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+  height: 36px;
+}
+
+.schoolInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardType {
+  font-size: 11px;
+  color: #2563eb;
+  font-weight: 600;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+/* 이메일 로컬파트(앞부분) 전용 */
+.emailLocal {
+  width: 160px;          /* 원하는 폭으로 */
+  min-width: 0;          /* .input의 268px을 덮어씀 */
+  flex: 0 0 235px;       /* flex-item 기준폭 고정 */
+  border: none;          /* 기존 inline과 동일하게 쓰고 싶으면 유지 */
+  border-radius: 0;
+  padding: 10px;
+  text-align: left;
+}
+/* 도메인 부분은 한 줄 유지 */
+.emailDomain {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  color: #777;
+  font-size: 14px;
+  padding: 10px;
+  text-align: left;
+}
+
+.verificationCodeContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.verificationCodeInput {
+  width: 56px;
+  height: 56px;
+  color: #fff;
+  border-radius: 12px;
+  border: 1px solid #dbdbdb;
+  background-color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+
+.verificationCodeInput:focus {
+  border-color: #0095f6;
+  box-shadow: 0 0 0 1px rgba(0, 149, 246, 0.3);
+}
+
+.verificationCodeInput.filled {
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4);
+  color: white;
+  font-size: 28px;
+  font-weight: 600;
+  border-color: transparent;
+}
+
+.verificationCodeInput:disabled.filled {
+  opacity: 0.9;
+}
+
+.verificationCodeInput:disabled:not(.filled) {
+  background-color: #f5f5f5;
+  color: #262626;
+}
+
+/* Shake Animation for Verification Cubes */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+.resendCodeContainer {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.resendCodeButton {
+  background: none;
+  border: none;
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  text-decoration: underline;
+}
+
+.resendCodeButton:hover {
+  color: #00376b;
+}
+
+@media (max-width: 450px) {
+  .loginContainer,
+  .signupContainer {
+    margin: 0 16px;
+    padding: 32px 24px;
+  }
+  
   .page {
-    padding: 32px;
-    padding-bottom: 80px;
+    padding: 16px;
   }
-
-  .main {
-    align-items: center;
-  }
-
-  .main ol {
-    text-align: center;
-  }
-
-  .ctas {
-    flex-direction: column;
-  }
-
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
-  }
-
-  a.secondary {
-    min-width: auto;
-  }
-
-  .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+  
+  .demoInfo {
+    margin: 24px 16px 0 16px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-}
+
+

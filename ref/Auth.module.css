@@ -1,0 +1,414 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1100px; /* Match the main content width from Home module */
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  min-height: calc(100vh - 200px); /* Account for header and footer */
+  background-color: #f9fafb;
+  font-family: var(--font-geist-sans);
+}
+
+.authCard {
+  width: 100%;
+  max-width: 480px;
+  background-color: #ffffff;
+  border-radius: 16px; /* 더 둥근 모서리로 변경 (8px → 16px) */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 폼 요소 사이 간격 */
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem; /* 레이블과 입력 필드 사이 간격 축소 */
+}
+
+.formGroup label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.input {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px; /* 더 둥근 모서리로 변경 */
+  background-color: #ffffff;
+  color: #111827;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  height: auto; /* 자동 높이 */
+}
+
+.input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 10px; /* 더 둥근 모서리로 변경 */
+  background-color: #ffffff;
+  color: #111827;
+  font-size: 0.875rem;
+  width: 100%;
+  appearance: auto;
+  transition: all 0.2s ease;
+  height: auto; /* 자동 높이 */
+}
+
+.select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.button {
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  font-weight: 500;
+  border-radius: 10px; /* 더 둥근 모서리로 변경 */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem; /* 버튼 글자 크기 축소 */
+}
+
+.button:hover {
+  background-color: #1d4ed8;
+}
+
+.button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.25rem; /* 마진 축소 */
+  font-size: 0.875rem;
+}
+
+.links a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  background-color: #fee2e2;
+  border-left: 4px solid #ef4444;
+  color: #b91c1c;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px; /* 더 둥근 모서리로 변경 */
+  font-size: 0.875rem;
+}
+
+/* 학생 정보 컨테이너 스타일 개선 */
+.studentInfoContainer {
+  margin: 0 0 1.25rem 0;
+  padding: 1.25rem;
+  background-color: #f9fafb;
+  border-radius: 12px; /* 더 둥근 모서리로 변경 */
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+  font-size: 0.95rem; /* 제목 크기 축소 */
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 1rem 0; /* 마진 축소 */
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.studentInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem; /* 간격 축소 */
+  margin-top: 0.75rem; /* 마진 축소 */
+}
+
+.studentIdPreview {
+  display: none;
+}
+
+/* 학생증 미리보기 */
+.studentCardPreview {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.studentCard {
+  width: 320px;
+  height: 200px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 12px;
+  border: 2px solid #2563eb;
+  box-shadow: 0 px 40px rgba(37, 99, 235, 0.15);
+  overflow: hidden;
+  position: relative;
+  font-family: inherit;
+}
+
+.cardHeader {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  color: white;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 44px;
+  justify-content: space-between;
+}
+
+.schoolLogo {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.cardTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.cardTitle h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.cardTitle span {
+  font-size: 0.65rem;
+  opacity: 0.9;
+  font-weight: 400;
+  line-height: 1;
+  margin-top: 2px;
+  display: block;
+}
+
+.cardBody {
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  height: calc(100% - 48px - 40px);
+}
+
+.photoSection {
+  flex-shrink: 0;
+}
+
+.photoPlaceholder {
+  width: 70px;
+  height: 82px;
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  border: 2px dashed #94a3b8;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.infoSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  justify-content: center;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: left;
+}
+
+.value {
+  font-size: 0.79rem;
+  color: #1e293b;
+  font-weight: 500;
+  flex: 1;
+  line-height: -0.8;
+}
+
+.realCardType {
+  font-size: 0.7rem;
+  color: #2563eb;
+  font-weight: 600;
+  background: #3aff99;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 30px;
+  gap: 0rem;
+  line-height: 1;
+}
+
+.timeDisplay {
+  font-size: 0.7rem;
+  color: ㄴㄴ#b02727;
+  font-family: monospace;
+  font-weight: 500;
+}
+
+.cardFooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f8fafc;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+  height: 40px;
+}
+
+.schoolInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.schoolInfo span {
+  font-size: 0.6rem;
+  color: #64748b;
+  line-height: 1;
+}
+
+.cardType {
+  font-size: 0.7rem;
+  color: #2563eb;
+  font-weight: 600;
+  background: rgba(37, 99, 235, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.principalSignature {
+  position: absolute;
+  bottom: 45px;
+  right: 40px;
+  font-size: 0.65rem;
+  color: #64748b;
+  font-weight: 500;
+  z-index: 1;
+}
+
+.schoolMotto {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  font-size: 0.6rem;
+  color: #64748b;
+  font-weight: 500;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  z-index: 1;
+}
+
+.sealPlaceholder {
+  position: absolute;
+  bottom: 45px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1.8px dashed #ef4444;
+  border-radius: 5px;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.45rem;
+  color: #dc2626;
+  font-weight: 500;
+  z-index: 1;
+}
+
+.statusRow {
+  display: flex;
+  align-items: center;
+  color: rgb(112, 133, 255);
+  gap: 0.3rem;
+}
+
+.greenDot {
+  width: 6px;
+  height: 6px;
+  background-color: #7073a8;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(16, 185, 129, 0.6);
+}
+
+/* 반응형 */
