@@ -43,7 +43,7 @@
 .userInfo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .userInfo span {
@@ -52,18 +52,35 @@
 }
 
 .logoutButton {
-  padding: 0.5rem 1rem;
-  background-color: #ff4444;
-  color: white;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4);
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 14px;
   cursor: pointer;
-  font-size: 11px;
-  transition: background-color 0.2s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(64, 93, 230, 0.2);
 }
 
 .logoutButton:hover {
-  background-color: #cc3333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(64, 93, 230, 0.3);
+}
+
+.logoutButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(64, 93, 230, 0.15);
+}
+
+.logoutIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mapContainer {
@@ -1108,4 +1125,199 @@
 .actionButton:hover .commentSvg {
   transform: scale(1.1);
 }
+
+/* Modern Guide Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.guideModal {
+  background-color: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.guideModalHeader {
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guideModalHeader h2 {
+  margin: 0;
+  color: #262626;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.modalCloseButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #8e8e8e;
+  cursor: pointer;
+  height: 36px;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.modalCloseButton:hover {
+  background-color: #f5f5f5;
+  color: #262626;
+}
+
+.guideContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.guideItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.guideItemIcon {
+  font-size: 32px;
+  background: #f9f9f9;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.guideItemContent {
+  flex: 1;
+}
+
+.guideItemContent h3 {
+  margin: 0 0 8px 0;
+  color: #262626;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.guideItemContent p {
+  margin: 0;
+  color: #666666;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.guideModalFooter {
+  padding: 16px 24px 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.guideConfirmButton {
+  background-color: #0095f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.guideConfirmButton:hover {
+  background-color: #0077c5;
+}
+
+/* Modern welcome message styles */
+.welcomeContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.welcomeContainer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #405de6, #5851db, #833ab4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 3px 8px rgba(64, 93, 230, 0.3);
+}
+
+.welcomeMessage {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.userName {
+  font-weight: 600;
+  font-size: 14px;
+  color: #262626;
+  position: relative;
+  display: inline-block;
+}
+
+.welcomeText {
+  font-size: 12px;
+  color: #8e8e8e;
+  letter-spacing: 0.3px;
+}
+
+/* ...existing code... */
 

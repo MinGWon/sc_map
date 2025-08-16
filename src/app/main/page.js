@@ -34,6 +34,7 @@ export default function MainPage() {
   const [userReplyLikes, setUserReplyLikes] = useState({});
   const [showComments, setShowComments] = useState(true); // Default is comments visible
   const [commentVisibility, setCommentVisibility] = useState({}); // Store visibility by space ID
+  const [showGuideModal, setShowGuideModal] = useState(false);
   const router = useRouter();
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
@@ -48,7 +49,14 @@ export default function MainPage() {
     const hasVisited = localStorage.getItem('hasVisited');
     
     if (userData) {
-      setUser(JSON.parse(userData));
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+      
+      // Check if this is the user's first time
+      if (parsedUser.isFirst === 1) {
+        setShowGuideModal(true);
+      }
+      
       setUserLoaded(true);
       
       // 이전에 방문한 적이 있으면 재로그인으로 처리
@@ -590,7 +598,7 @@ export default function MainPage() {
     if (user.type === "student") {
       return `@${user.grade}학년 재학생`;
     } else if (user.type === "teacher") {
-      return `@교직원`;
+      return `@선생님`;
     } else if (user.type === "staff") {
       return `@직원`;
     }
@@ -1032,6 +1040,7 @@ export default function MainPage() {
       // 줌 레벨 로그 인터벌 정리
       if (zoomLogIntervalRef.current) {
         clearInterval(zoomLogIntervalRef.current);
+        zoomLogIntervalRef.current = null;
       }
       
       // 마커 이벤트 리스너 정리
@@ -1134,6 +1143,38 @@ export default function MainPage() {
     );
   }
 
+  // Function to handle closing the guide modal and updating the first-time flag
+  const handleCloseGuideModal = async () => {
+    setShowGuideModal(false);
+    
+    if (user && user.isFirst === 1) {
+      try {
+        // Update the database to mark the user as not a first-time user anymore
+        const response = await fetch('/api/database', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'updateFirstTimeFlag',
+            userId: user.id
+          }),
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Update the local storage user data
+          const updatedUser = {...user, isFirst: 0};
+          setUser(updatedUser);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+        }
+      } catch (error) {
+        console.error('Error updating first-time flag:', error);
+      }
+    }
+  };
+  
   return (
     <>
       <Script
@@ -1152,16 +1193,88 @@ export default function MainPage() {
         }}
       />
       
-      <div className={styles.mainPage}>
-        <div className={styles.headerLeft}>
-          <h1>순창고등학교</h1>
-        </div>
-        <div className={styles.headerRight}>
-          <div className={styles.userInfo}>
-            <span>{user.name}님 환영합니다</span>
-            <button onClick={handleLogout} className={styles.logoutButton}>로그아웃</button>
+      {/* Guide Modal for First-Time Users */}
+      {showGuideModal && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.guideModal}>
+            <div className={styles.guideModalHeader}>
+              <h2>최초 접속 안내</h2>
+              <button onClick={handleCloseGuideModal} className={styles.modalCloseButton}>×</button>
+            </div>
+            
+            <div className={styles.guideContent}>
+              <div className={styles.guideItem}>
+                <div className={styles.guideItemIcon}>🕵️‍♂️</div>
+                <div className={styles.guideItemContent}>
+                  <h3>모든 댓글을 익명으로 표시됩니다</h3>
+                  <p>여러분이 작성하신 댓글은 n학년 이런식으로 다른 유저에게 표시됩니다.</p>
+                </div>
+              </div>
+              
+              <div className={styles.guideItem}>
+                <div className={styles.guideItemIcon}>😊</div>
+                <div className={styles.guideItemContent}>
+                  <h3>예쁜 말을 사용해주세요</h3>
+                  <p>여러분이 작성하신 댓글은 모두가 볼 수 있습니다.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className={styles.guideModalFooter}>
+              <button onClick={handleCloseGuideModal} className={styles.guideConfirmButton} style={{
+  background: 'linear-gradient(45deg, #405de6, #5851db, #833ab4)',
+  border: 'none',
+  borderRadius: '8px',
+  color: 'white',
+  fontSize: '16px',
+  fontWeight: 500,
+  padding: '8px 18px',
+  marginLeft: '10px',
+  // Removed custom color and border styles to use the ones from CSS modules
+              }}>
+                확인했습니다
+              </button>
+            </div>
           </div>
         </div>
+      )}
+      
+      <div className={styles.mainPage}>
+        <div className={styles.headerLeft} style={{border: 'none', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.045)'}}>
+          <h1>순창고등학교</h1>
+        </div>
+        <div className={styles.headerRight} style={{paddingLeft: '10px', border: 'none', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.045)'}}>
+  <div className={styles.userInfo}>
+    <div className={styles.welcomeContainer} style={{border: 'none', boxShadow: 'none'}}>
+      <div className={styles.userAvatar}>
+        {user.name.charAt(0).toUpperCase()}
+      </div>
+      <div className={styles.welcomeMessage}>
+        <div className={styles.userName}>{user.name}</div>
+        <div className={styles.welcomeText}>
+          {user.type === "student" ? 
+            `${user.grade}학년 ${user.class}반${user.column_name ? ` ${user.column_name}번` : ''}` : 
+            user.type === "teacher" ? 
+              "교직원" : 
+              user.type === "staff" ? 
+                "직원" : "사용자"}
+        </div>
+      </div>
+    </div>
+    <button 
+      onClick={handleLogout} 
+      className={styles.logoutButton}
+    >
+      <span className={styles.logoutIcon}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 7L15.59 8.41L18.17 11H8V13H18.17L15.59 15.58L17 17L22 12L17 7Z" fill="currentColor" style={{color: 'white'}}/>
+          <path d="M4 5H12V3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H12V19H4V5Z" fill="currentColor" style={{color: 'white'}}/>
+        </svg>
+      </span>
+      <span style={{color: 'white'}}>로그아웃</span>
+    </button>
+  </div>
+</div>
 
         {/* 지도 레벨 컨트롤 - 왼쪽 배치 */}
         <div className={styles.mapLevelControl}>

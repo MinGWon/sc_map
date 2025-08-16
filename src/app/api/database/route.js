@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt';
 
 // 데이터베이스 연결 설정
 const dbConfig = {
-  host: process.env.DB_HOST || '211.186.91.57',
+  host: process.env.DB_HOST || '192.168.45.208',
   user: process.env.DB_USER || 'pm2',
   password: process.env.DB_PASSWORD || '2792',
   database: process.env.DB_NAME || 'sc_map',
@@ -209,7 +209,14 @@ export async function POST(request) {
               id: user.id,
               name: user.name,
               type: user.type,
-              ...(user.type === "student" ? { grade: user.grade, class: user.class } : { department: user.department })
+              isFirst: user.isFirst || 0, // Include the isFirst flag
+              ...(user.type === "student" ? { 
+                grade: user.grade, 
+                class: user.class,
+                column_name: user.column_name // Add the student number from column_name
+              } : { 
+                department: user.department 
+              })
             }
           });
         }
@@ -531,6 +538,26 @@ export async function POST(request) {
           }
         });
       }
+    } else if (action === 'updateFirstTimeFlag') {
+      const { userId } = body;
+      
+      if (!userId) {
+        return Response.json({ 
+          success: false, 
+          message: '사용자 ID가 필요합니다.' 
+        }, { status: 400 });
+      }
+      
+      // Update the isFirst flag to 0
+      await pool.execute(
+        'UPDATE users SET isFirst = 0 WHERE id = ?',
+        [userId]
+      );
+      
+      return Response.json({
+        success: true,
+        message: '첫 방문 상태가 업데이트되었습니다.'
+      });
     }
 
     return Response.json({ success: false, message: '유효하지 않은 액션입니다.' }, { status: 400 });

@@ -337,7 +337,7 @@ export const getReports = async (spaceId) => {
         id: report.id,
         text: report.content,
         author: report.user_type === "student" ? `${report.grade}학년` : 
-               report.user_type === "teacher" ? "교직원" : "직원",
+               report.user_type === "teacher" ? "선생님" : "직원",
         timestamp: new Date(report.created_at).toLocaleString(),
         userId: report.user_id
       }));
